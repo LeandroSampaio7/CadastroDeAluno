@@ -1,0 +1,185 @@
+﻿@{
+	ViewData["Title"] = "Listagem de Alunos";
+}
+<form method="post" id="formListAlunos">
+	<html lang="pt-br">
+	<body>
+		<div class="container mt-5">
+			<div class="row">
+				<div class="col-12">
+					<h2 class="text-center mb-4">Listagem de Alunos</h2>
+					<table class="table table-modern">
+						<thead>
+							<tr>
+								<th>Aluno</th>
+								<th>Email</th>
+								<th>Opções</th>
+							</tr>
+						</thead>
+						<tbody id="tabelaListagemDeAlunos">
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+</form>
+
+<form id="formAlterarAluno">
+	<!-- --------------------------------------------------- Modal Table --------------------------------------------------------------------- -->
+	<div class="modal fade" id="AddMateriaModal" tabindex="-1" role="dialog" aria-labelledby="AddMateriaModal" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="ModalLabel">Incluir Materia</h5>
+					<button type="button" onclick="closeModalMateria();" class="btn-close" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<select id="Materia" class="form-control">
+						<option value="">Insira sua Materia</option>
+						<option value="Matematica">Matematica</option>
+						<option value="Português">Português</option>
+						<option value="Português">Ciências</option>
+						<option value="Português">Geografia</option>
+						<option value="Português">Historia</option>
+					</select>
+					<select id="Semestre" class="form-control">
+						<option value="">Semestres</option>
+						<option value="8">8 Semestres</option>
+						<option value="6">6 Semestres</option>
+						<option value="4">4 Semestres</option>
+						<option value="2">2 Semestres</option>
+					</select>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeModalMateria()">Fechar</button>
+					<button type="button" class="btn btn-primary" onclick="incluirMateria();">Incluir</button>
+				</div>
+				<div id="Modallist" class="container mt-1">
+					<h5 id="ModalLabellist">Materias:</h5>
+					<table id="tabelaModal" class="table table-bordered">
+						<thead>
+							<tr>
+								<th>Matéria</th>
+								<th>Semestres</th>
+								<th>Opções</th>
+							</tr>
+						</thead>
+						<tbody id="listModalMaterias">
+					
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- --------------------------------------------------- Modal Table --------------------------------------------------------------------- -->
+
+	<div class="row">
+		<div class="col-md-6">
+			<div class="form-group">
+				<label for="Nome">Nome Completo:</label>
+				<input required="required" type="text" class="form-control" id="Nome" name="Nome" placeholder="" maxlength="50">
+				<input type="hidden" id="Id" name="Id" disabled>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group">
+				<label for="CPF">CPF:</label>
+				<input required="required" type="text" class="form-control" id="CPF" name="CPF" placeholder="" onkeypress="apenasNumeros(event)" onchange="mascaraCPF();" maxlength="11">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="form-group">
+				<label for="Matricula">Matrícula:</label>
+				<input required="required" type="text" class="form-control" id="Matricula" name="Matricula" placeholder="" maxlength="255" disabled>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group">
+				<label for="Nacionalidade">Nacionalidade:</label>
+				<input required="required" type="text" class="form-control" id="Nacionalidade" name="Nacionalidade" placeholder="" maxlength="50">
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-4">
+			<div class="form-group">
+				<label for="CEP">CEP:</label>
+				<input required="required" type="text" class="form-control" id="CEP" name="CEP" onkeypress="apenasNumeros(event)" onchange="mascaraCEP();" placeholder="" maxlength="8">
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="form-group">
+				<label for="Estado">Estado:</label>
+				<select required="required" id="Estado" class="form-control" name="Estado">
+					<option value="">Selecione</option>
+					<option value="SP">São Paulo</option>
+					<option value="PE">Pernambuco</option>
+					<option value="MG">Minas Gerais</option>
+					<option value="BA">Bahia</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="form-group">
+				<label for="Cidade">Cidade:</label>
+				<input required="required" type="text" class="form-control" id="Cidade" name="Cidade" maxlength="50" placeholder="">
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="form-group">
+				<label for="Endereco">Endereço:</label>
+				<input required="required" type="text" class="form-control" id="Endereco" name="Endereco" placeholder="" maxlength="400">
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6">
+			<div class="form-group">
+				<label for="Email">E-mail:</label>
+				<div class="input-group mb-3">
+					<input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2" id="Email">
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group">
+				<label for="Telefone">Telefone:</label>
+				<input required="required" type="tel" class="form-control" id="Telefone" name="Telefone" placeholder="" maxlength="11" onchange="mascaraTEL();" onkeypress="apenasNumeros(event)">
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6 col-lg-2">
+			<div class="form-group">
+				<button type="button" id="IncluirMateria" class="btn btn-outline-secondary" data-toggle="modal" onclick="openModalMateria()">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+						<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+						<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+					</svg>&nbsp;Incluir materia
+				</button>
+			</div>
+		</div>
+		<div class="col-md-6 col-lg-2">
+			<div class="form-group">
+				<button type="button" id="Alterar" class="btn btn-primary" onclick="alterar()">
+					<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-floppy2-fill" viewBox="0 0 16 16">
+						<path d="M12 2h-2v3h2z" />
+						<path d="M1.5 0A1.5 1.5 0 0 0 0 1.5v13A1.5 1.5 0 0 0 1.5 16h13a1.5 1.5 0 0 0 1.5-1.5V2.914a1.5 1.5 0 0 0-.44-1.06L14.147.439A1.5 1.5 0 0 0 13.086 0zM4 6a1 1 0 0 1-1-1V1h10v4a1 1 0 0 1-1 1zM3 9h10a1 1 0 0 1 1 1v5H2v-5a1 1 0 0 1 1-1" />
+					</svg>&nbsp;Salvar alterações
+				</button>
+
+			</div>
+		</div>
+	</div>
+</form>

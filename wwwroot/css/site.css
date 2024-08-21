@@ -1,0 +1,139 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+#Beneficiario {
+    width: 110%;
+}
+
+#Cadastra {
+    width: 100%;
+}
+
+.table-modern {
+    border-collapse: separate;
+    border-spacing: 0 15px;
+}
+
+.table-modern thead th {
+    border: none;
+    background-color: #007bff;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.table-modern tbody tr {
+    background-color: #f8f9fa;
+    transition: all 0.3s ease;
+}
+
+.table-modern tbody tr:hover {
+    background-color: #e9ecef;
+}
+
+.table-modern td, .table-modern th {
+    vertical-align: middle;
+    border-top: none;
+    border-bottom: none;
+    padding: 15px;
+}
+
+.table-modern td:first-child, .table-modern th:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.table-modern td:last-child, .table-modern th:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* Estilos para a modal */
+.modal {
+    display: none; /* Inicialmente oculto */
+    position: fixed; /* Fixo na tela */
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0,0.5); /* Fundo com transparência */
+    height: 100vh;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto; /* 15% da margem superior e auto lateral para centralizar */
+    padding: 20px;
+    border: 1px solid #888;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 500px;
+    max-height: 500px
+}
+
+.modal-header, .modal-footer {
+    width: 100%;
+}
+
+.modal-body {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.modal-body select {
+    width: 48%;
+}
+
+/* Estilos para a tabela modal */
+
+#tabelaModal {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+#tabelaModal thead th {
+    background-color: #f8f9fa;
+}
+
+#tabelaModal th, #tabelaModal td {
+    padding: 10px;
+    text-align: left;
+}
+
+#tabelaModal .btn {
+    width: 100%;
+}
+
+#ModalLabellist {
+    text-align: left;
+}
+
+#Modallist {
+    overflow: auto;
+}
+
+/* -------------------------- */
+
+#Alterar, #IncluirMateria {
+    width: 110%;
+}
